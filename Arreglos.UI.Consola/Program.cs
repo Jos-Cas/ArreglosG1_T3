@@ -9,10 +9,11 @@ try
 {
     oMiArreglo.Agregar(7);
     oMiArreglo.Agregar(-3);
-    oMiArreglo.Agregar(7);
-    oMiArreglo.Agregar(-3);
-    oMiArreglo.Agregar(7);
-    oMiArreglo.Agregar(500);
+
+    Console.WriteLine(oMiArreglo);
+
+    Console.ReadKey();
+    oMiArreglo.Insertar(500, 20);
 
 }
 catch (Exception ex)
