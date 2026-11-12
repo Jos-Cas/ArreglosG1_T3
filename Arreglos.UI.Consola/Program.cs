@@ -36,6 +36,7 @@ internal class Program
 
         MiArreglo oMyArreglo = new(100);
         try
+
         {
             Console.WriteLine("\nArreglo\n");
             oMyArreglo.Llenar();
