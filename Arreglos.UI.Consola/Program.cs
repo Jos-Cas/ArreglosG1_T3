@@ -1,42 +1,79 @@
 ﻿using Arreglos.Logica;
+using Microsoft.VisualBasic;
 
-Console.WriteLine("Operaciones en pila");
-
-Console.WriteLine("Arreglo\n");
-MiArreglo oMiArreglo = new MiArreglo(5);
-
-try
+internal class Program
 {
-    oMiArreglo.Agregar(7);
-    oMiArreglo.Agregar(-3);
-    oMiArreglo.Agregar(8);
+        private static void Main(string[] args)
+    {
+        Console.WriteLine("---Operaciones de pila---\n");
 
-    Console.WriteLine(oMiArreglo);
-    Console.WriteLine("Insertar 500 en posicion 1");
-    Console.ReadKey();
-    oMiArreglo.Insertar(500, 1);
-    Console.WriteLine(oMiArreglo);
+        Console.WriteLine("Arreglo\n");
+        MiArreglo oMiArreglo = new MiArreglo(5);
 
-    Console.WriteLine("Eliminar 500 en posicion 1");
-    Console.ReadKey();
-    oMiArreglo.Eliminar(1);
-    Console.WriteLine(oMiArreglo);  
+        try
+        {
+            oMiArreglo.Agregar(7);
+            oMiArreglo.Agregar(-2);
+            oMiArreglo.Agregar(8);
+
+            Console.WriteLine(oMiArreglo);
+            Console.WriteLine("Insertar 500 en posicion 1");
+            Console.ReadKey();
+            oMiArreglo.Insertar(500, 1);
+            Console.WriteLine(oMiArreglo);
+
+            Console.WriteLine("Eliminar 500 en posicion 1");
+            Console.ReadKey();
+            oMiArreglo.Eliminar(1);
+            Console.WriteLine(oMiArreglo);
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            throw;
+        }
+
+        MiArreglo oMyArreglo = new(100);
+        try
+        {
+            Console.WriteLine("\nArreglo\n");
+            oMyArreglo.Llenar();
+            Console.WriteLine(oMyArreglo);
+            Console.ReadKey();
+
+            Console.WriteLine("\nPares\n");
+            var verPares = oMyArreglo.ObtenerPares();
+            Console.WriteLine(verPares);
+            Console.ReadKey();
+
+            Console.WriteLine("\nPares ordenados\n");
+            verPares.Ordenar();
+            Console.WriteLine(verPares);
+            Console.ReadKey();
+        }
+        catch (Exception)
+        {
+            throw;
+        }
+
+        // Console.WriteLine(oMiArreglo);
+
+
+        /*oMiArreglo.Llenar(1,20);
+
+        Console.WriteLine("Arreglo desordenado\n");
+        Console.WriteLine(oMiArreglo);
+
+
+        Console.WriteLine("Arreglo ordenado ascendente\n");
+        oMiArreglo.Ordenar();
+        Console.WriteLine(oMiArreglo);
+
+        Console.WriteLine("Arreglo ordenado descendente\n");
+        oMiArreglo.Ordenar(false);
+        Console.WriteLine(oMiArreglo);*/
+
+        Console.ReadKey();
+    }
 }
-catch (Exception ex)
-{
-    Console.WriteLine(ex.Message);
-}
-//oMiArreglo.Llenar(1, 20);
-
-//Console.WriteLine("Arreglo desordenado\n");
-//Console.WriteLine(oMiArreglo);
-
-//Console.WriteLine("Arreglo ordenado ascendente\n");
-//oMiArreglo.Ordenar(true);
-//Console.WriteLine(oMiArreglo);
-
-//Console.WriteLine("Arreglo ordenado descendente\n");
-//oMiArreglo.Ordenar(false);
-//Console.WriteLine(oMiArreglo);
-
-Console.ReadKey();

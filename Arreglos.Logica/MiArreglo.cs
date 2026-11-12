@@ -1,23 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
-using System.Data;
 
 namespace Arreglos.Logica
 {
     public class MiArreglo
     {
-        //Atributos o campos 
+        //Atributos o campos
         private int _tope;
         private int[] _arreglo;
 
-        //constructor 
+        //Constructor
         public MiArreglo(int n)
         {
             N = n;
             _arreglo = new int[N];
             _tope = 0;
-
         }
 
         //Propiedades
@@ -26,23 +25,29 @@ namespace Arreglos.Logica
         public bool EstaVacio => _tope == 0;
 
         //Métodos
-        //Metodo llenar
+        public void Llenar()
+        {
+            Llenar(1, 100);
+        }
+
+        //Método llenar con parametros
         public void Llenar(int minimo, int maximo)
         {
             Random oRandom = new Random();
             for (int i = 0; i < N; i++)
             {
                 _arreglo[i] = oRandom.Next(minimo, maximo);
-
             }
             _tope = N;
-
         }
-        //Metodo ordenar(Burbuja)
+
+        //Método ordenar (Burbuja)
         public void Ordenar()
         {
             Ordenar(true);
         }
+
+
         public void Ordenar(bool ascendente)
         {
             for (int i = 0; i < _tope - 1; i++)
@@ -57,25 +62,23 @@ namespace Arreglos.Logica
                         }
                     }
                     else
-                    {
                         if (_arreglo[i] < _arreglo[j])
                         {
                             Cambiar(ref _arreglo[i], ref _arreglo[j]);
                         }
-                    }
                 }
             }
         }
 
-        //Metodo Cambiar 
+        //Método cambiar
         public void Cambiar(ref int a, ref int b)
         {
             int aux = a;
             a = b;
             b = aux;
         }
-        //Metodo agregar 
 
+        //Método agregar
         public void Agregar(int numero)
         {
             if (EstaLleno)
@@ -84,9 +87,9 @@ namespace Arreglos.Logica
             }
             _arreglo[_tope] = numero;
             _tope++;
-
         }
-        //Metodo Insertar
+
+        //Método Insertar
         public void Insertar(int numero, int posicion)
         {
             if (EstaLleno)
@@ -101,32 +104,31 @@ namespace Arreglos.Logica
             {
                 posicion = _tope;
             }
+
             for (int i = _tope; i > posicion; i--)
             {
                 _arreglo[i] = _arreglo[i - 1];
             }
             _arreglo[posicion] = numero;
             _tope++;
-
         }
 
-        //Metodo eliminar
+        //Método eliminar
         public void Eliminar(int posicion)
         {
             if (EstaVacio)
             {
-                throw new Exception("El arreglo esta vacio")
-;
+                throw new Exception("El arreglo esta vacio");
             }
             if (posicion < 0)
             {
                 posicion = 0;
-
             }
             if (posicion > _tope)
             {
                 posicion = _tope;
             }
+
             for (int i = posicion; i < _tope - 1; i++)
             {
                 _arreglo[i] = _arreglo[i + 1];
@@ -134,18 +136,46 @@ namespace Arreglos.Logica
             _tope--;
         }
 
-        //Método ToString 
+        public MiArreglo ObtenerPares()
+        {
+            int contadorPares = 0;
+            for (int i = 0; i < _tope; i++)
+            {
+                if (_arreglo[i] % 2 == 0)
+                {
+                    contadorPares++;
+                }
+            }
+
+            MiArreglo arregloPares = new MiArreglo(contadorPares);
+            for (int i = 0; i < _tope; i++)
+            {
+                if (_arreglo[i] % 2 == 0)
+                {
+                    arregloPares.Agregar(_arreglo[i]);
+                }
+            }
+
+            return arregloPares;
+        }
+
+    
+        //Método ToString
         public override string ToString()
         {
             if (EstaVacio)
             {
+                Console.WriteLine("Hola");
                 return "Esta vacio";
+
             }
+
             string cadena = string.Empty;
             int contador = 0;
-            for (int i = 0; i < _tope; i++)
+
+            for (int i = 0; i < _tope - 1; i++)
             {
-                //cadena = cadena + _arreglo[i];
+                //cadena = cadena + _arreglo[i]; es la misma instruccion que la de abajo
                 cadena += $"{_arreglo[i]}\t";
                 contador++;
                 if (contador > 9)
@@ -154,6 +184,7 @@ namespace Arreglos.Logica
                     cadena += "\n";
                 }
             }
+
             return cadena;
         }
 
