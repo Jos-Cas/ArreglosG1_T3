@@ -51,16 +51,6 @@ internal class Program
             verPares.Ordenar();
             Console.WriteLine(verPares);
             Console.ReadKey();
-
-            Console.WriteLine("\nPrimos\n");
-            var verPrimos = oMyArreglo.ObtenerPrimos();
-            Console.WriteLine(verPrimos);
-            Console.ReadKey();
-
-            Console.WriteLine("\nPrimos Ordenados\n");
-            verPrimos.Ordenar();
-            Console.WriteLine(verPrimos);
-            Console.ReadKey();
         }
         catch (Exception)
         {
